@@ -3,9 +3,9 @@
 import React from 'react';
 import {View, Text, Image} from 'react-native';
 import styles from './styles';
+
 const Posts = (props) => {
   const post = props.post;
-  console.log('post' + post);
   return (
     <View style={styles.container}>
       {/* Image */}

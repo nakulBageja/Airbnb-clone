@@ -1,11 +1,12 @@
 import React, {useState} from 'react';
-import {View, Text, TextInput, FlatList} from 'react-native';
+import {View, Text, TextInput, FlatList, Pressable} from 'react-native';
 import styles from './styles';
 import destinationData from '../../../assets/data/search';
 import Entypo from 'react-native-vector-icons/Entypo';
+import {useNavigation} from '@react-navigation/native';
 const DestinationLocationsScreen = () => {
   const [destinationInput, setDestinationInput] = useState('');
-
+  const navigation = useNavigation();
   const renderList = (item) => {
     return (
       <View style={styles.listContainer}>
@@ -17,7 +18,11 @@ const DestinationLocationsScreen = () => {
     );
   };
   return (
-    <View style={styles.container}>
+    <Pressable
+      onPress={() => {
+        navigation.navigate('Guests');
+      }}
+      style={styles.container}>
       {/* Input field */}
       <TextInput
         style={styles.textInput}
@@ -30,7 +35,7 @@ const DestinationLocationsScreen = () => {
         data={destinationData}
         renderItem={({item}) => renderList(item)}
       />
-    </View>
+    </Pressable>
   );
 };
 

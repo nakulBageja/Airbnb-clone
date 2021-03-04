@@ -43,6 +43,7 @@ const styles = StyleSheet.create({
   searchButtonText: {
     fontSize: 16,
     fontWeight: 'bold',
+    marginLeft: 10,
   },
 });
 

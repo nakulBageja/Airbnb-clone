@@ -1,18 +1,12 @@
 import React from 'react';
-import HomeScreen from './src/screens/Home/index';
-import SearchResultsScreen from './src/screens/SearchResults/index';
-import DestinationLocationsScreen from './src/screens/DestinationLocations/index';
-import GuestsScreen from './src/screens/Guests/index';
-
-import {StatusBar} from 'react-native';
+import 'react-native-gesture-handler';
+import Router from './src/navigation/Router';
 
 const App: () => React$Node = () => {
   return (
     <>
-      <StatusBar backgroundColor="orange" barStyle="light-content" />
-      {/* <HomeScreen /> */}
-      {/* <DestinationLocationsScreen /> */}
-      <GuestsScreen />
+      {/* <StatusBar backgroundColor="orange" barStyle="light-content" /> */}
+      <Router />
     </>
   );
 };
