@@ -32,9 +32,15 @@ const GuestsScreen = () => {
           setFunction={setInfants}
         />
       </View>
+      {/* Nested navigation to go searchResults navigation through explore tab */}
       <Pressable
         onPress={() => {
-          navigation.navigate('Accomodations');
+          navigation.navigate('Home', {
+            screen: 'Explore',
+            params: {
+              screen: 'SearchResults',
+            },
+          });
         }}
         style={styles.button}>
         <Text style={styles.searchText}>Search</Text>
