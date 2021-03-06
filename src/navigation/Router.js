@@ -6,6 +6,8 @@ import HomeTabsNavigator from './HomeTabsNavigator';
 import DestinationLocationsScreen from '../screens/DestinationLocations';
 import GuestsScreen from '../screens/Guests';
 import SearchResultsScreen from '../screens/SearchResults';
+import LoginScreen from '../screens/Login';
+import RegisterScreen from '../screens/Registration';
 
 const Stack = createStackNavigator();
 const Router = () => {
@@ -17,6 +19,7 @@ const Router = () => {
           component={HomeTabsNavigator}
           options={{headerShown: false}}
         />
+        <Stack.Screen name="Authenticate" component={LoginScreen} />
         <Stack.Screen
           name="Destination"
           component={DestinationLocationsScreen}
@@ -36,6 +39,13 @@ const Router = () => {
           component={SearchResultsScreen}
           options={{
             title: 'Select your Stay',
+          }}
+        />
+        <Stack.Screen
+          name="Register"
+          component={RegisterScreen}
+          options={{
+            title: 'Create your Account',
           }}
         />
       </Stack.Navigator>
