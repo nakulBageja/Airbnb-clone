@@ -45,17 +45,6 @@ const DestinationLocationsScreen = () => {
         suppressDefaultStyles //This is added to remove default styles
         renderRow={(item) => renderList(item)}
       />
-      {/* Input field
-        {/* <TextInput
-          style={styles.textInput}
-          placeholder="Where are you going?"
-          value={destinationInput}
-          onChangeText={setDestinationInput}
-        /> */}
-      {/* <FlatList
-        data={destinationData}
-        renderItem={({item}) => renderList(item)}
-      /> */}
     </View>
   );
 };
