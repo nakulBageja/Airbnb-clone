@@ -31,14 +31,14 @@ const DestinationLocationsScreen = () => {
         onPress={(data, details = null) => {
           // 'details' is provided when fetchDetails = true
           navigation.navigate('Guests');
-          console.log(data, details);
+          //console.log(data, details);
         }}
         fetchDetails //To get more information of that place
         styles={{
           textInput: styles.textInput,
         }}
         query={{
-          key: 'AIzaSyBGgjhY4pCTVtm8s-voTuuTGcBaBJfSA9A',
+          key: 'AIzaSyBMaVGNL6AUp7jdGWIVMUofAhP-nakFJ38',
           language: 'en',
           type: '(cities)',
         }}
