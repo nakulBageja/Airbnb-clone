@@ -10,11 +10,11 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
     borderRadius: 10,
     overflow: 'hidden',
+    margin: 5,
   },
   container: {
     height: '100%',
     padding: 5,
-    marginHorizontal: 20,
   },
   bedrooms: {
     marginVertical: 10,

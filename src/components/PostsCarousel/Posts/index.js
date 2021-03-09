@@ -29,7 +29,7 @@ const PostsCarousel = (props) => {
           </Text>
           {/*  Old price and new price*/}
           <Text style={styles.pricing}>
-            <Text style={styles.newPrice}> ${post.newPrice}</Text> /night
+            <Text style={styles.newPrice}>${post.newPrice}</Text> /night
           </Text>
         </View>
       </View>
