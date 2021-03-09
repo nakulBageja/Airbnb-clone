@@ -15,7 +15,7 @@ const HomeTabsNavigator = () => {
     <Tab.Navigator tabBarOptions={{activeTintColor: '#f15454'}}>
       <Tab.Screen
         name="Explore"
-        // component={ExploreNavigation}
+        //component={ExploreNavigation}
         component={SearchResultsMap}
         options={{
           tabBarIcon: ({color}) => (
