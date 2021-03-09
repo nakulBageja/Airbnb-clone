@@ -8,6 +8,7 @@ import GuestsScreen from '../screens/Guests';
 import SearchResultsScreen from '../screens/SearchResults';
 import LoginScreen from '../screens/Login';
 import RegisterScreen from '../screens/Registration';
+import PostDetailsScreen from '../screens/PostDetails';
 
 const Stack = createStackNavigator();
 const Router = () => {
@@ -46,6 +47,13 @@ const Router = () => {
           component={RegisterScreen}
           options={{
             title: 'Create your Account',
+          }}
+        />
+        <Stack.Screen
+          name="PostDetail"
+          component={PostDetailsScreen}
+          options={{
+            title: 'Details',
           }}
         />
       </Stack.Navigator>

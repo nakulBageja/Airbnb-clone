@@ -1,7 +1,6 @@
 import React, {useState} from 'react';
 import {View, Text, TextInput, FlatList, Pressable} from 'react-native';
 import styles from './styles';
-import destinationData from '../../../assets/data/search';
 import Entypo from 'react-native-vector-icons/Entypo';
 import {useNavigation} from '@react-navigation/native';
 import {GooglePlacesAutocomplete} from 'react-native-google-places-autocomplete';

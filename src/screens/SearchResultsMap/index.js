@@ -3,7 +3,7 @@ import {View, Text, FlatList, useWindowDimensions} from 'react-native';
 import MapView, {PROVIDER_GOOGLE} from 'react-native-maps';
 import places from '../../../assets/data/feed';
 import CustomMarker from '../../components/CustomMarker';
-import PostsCarousel from '../../components/PostsCarousel/Posts';
+import PostsCarousel from '../../components/PostsCarousel';
 const SearchResultsMap = () => {
   const [isSelectedId, setIsSelectedId] = useState(null);
   const width = useWindowDimensions().width;

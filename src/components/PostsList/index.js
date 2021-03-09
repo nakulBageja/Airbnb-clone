@@ -1,13 +1,17 @@
 //component to display a post
 
 import React from 'react';
-import {View, Text, Image} from 'react-native';
+import {View, Text, Image, Pressable} from 'react-native';
 import styles from './styles';
-
-const Posts = (props) => {
+import {useNavigation} from '@react-navigation/native';
+const PostsList = (props) => {
   const post = props.post;
+  const navigation = useNavigation();
+  const showDetails = () => {
+    navigation.navigate('PostDetail', {postID: post.id});
+  };
   return (
-    <View style={styles.container}>
+    <Pressable onPress={showDetails} style={styles.container}>
       {/* Image */}
       <Image
         style={styles.images}
@@ -30,8 +34,8 @@ const Posts = (props) => {
       </Text>
       {/*  Total price*/}
       <Text style={styles.totalPrice}>${post.totalPrice} total</Text>
-    </View>
+    </Pressable>
   );
 };
 
-export default Posts;
+export default PostsList;

@@ -1,14 +1,20 @@
 //component to display a post
 
 import React from 'react';
-import {View, Text, Image, useWindowDimensions} from 'react-native';
+import {View, Text, Image, useWindowDimensions, Pressable} from 'react-native';
 import styles from './styles';
-
+import {useNavigation} from '@react-navigation/native';
 const PostsCarousel = (props) => {
   const post = props.post;
   const width = useWindowDimensions().width;
+  const navigation = useNavigation();
+  const showDetails = () => {
+    navigation.navigate('PostDetail', {postID: post.id});
+  };
   return (
-    <View style={{...styles.container, width: width - 60}}>
+    <Pressable
+      onPress={showDetails}
+      style={{...styles.container, width: width - 60}}>
       <View style={styles.innerContainer}>
         {/* Image */}
         <Image
@@ -32,7 +38,7 @@ const PostsCarousel = (props) => {
           </Text>
         </View>
       </View>
-    </View>
+    </Pressable>
   );
 };
 

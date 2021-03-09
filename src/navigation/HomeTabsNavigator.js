@@ -8,15 +8,13 @@ import Feather from 'react-native-vector-icons/Feather';
 import EvilIcons from 'react-native-vector-icons/EvilIcons';
 import ExploreNavigation from './ExploreNavigation';
 import LoginScreen from '../screens/Login';
-import SearchResultsMap from '../screens/SearchResultsMap';
 const Tab = createBottomTabNavigator();
 const HomeTabsNavigator = () => {
   return (
     <Tab.Navigator tabBarOptions={{activeTintColor: '#f15454'}}>
       <Tab.Screen
         name="Explore"
-        //component={ExploreNavigation}
-        component={SearchResultsMap}
+        component={ExploreNavigation}
         options={{
           tabBarIcon: ({color}) => (
             <Fontisto name="search" size={25} color={color} />
