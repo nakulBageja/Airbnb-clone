@@ -22,7 +22,7 @@ const styles = StyleSheet.create({
     elevation: 10,
   },
   container: {
-    height: '100%',
+    height: '40%',
     padding: 5,
   },
   bedrooms: {
