@@ -9,12 +9,14 @@ import {
   TouchableOpacity,
   ActivityIndicator,
   Alert,
+  Keyboard,
 } from 'react-native';
 import {Input, Button, Text} from 'react-native-elements';
 import {useNavigation} from '@react-navigation/native';
 import styles from './styles';
 import {useDispatch} from 'react-redux';
 import * as authActions from '../../../store/actions/auth';
+import * as userActions from '../../../store/actions/user';
 //import {auth} from '../firebase';
 
 const LoginScreen = (props) => {
@@ -34,12 +36,17 @@ const LoginScreen = (props) => {
   //Handle sign in functionality
   const signInHandler = async () => {
     setIsLoading(true);
+    Keyboard.dismiss();
     try {
       await dispatch(authActions.login(email, password));
+      await dispatch(userActions.getUserDetails()); //fetch user details from Db
+      setEmail('');
+      setPassword('');
+      navigation.navigate('Explore'); //go to home page
     } catch (error) {
       setError(error.message);
+      setIsLoading(false);
     }
-    setIsLoading(false);
   };
   return (
     <KeyboardAvoidingView

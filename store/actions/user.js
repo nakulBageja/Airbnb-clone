@@ -1,4 +1,4 @@
-export const GET_USER = 'GET_USER';
+export const USER_DETAILS = 'USER_DETAILS';
 
 //Post user details
 export const postUserDetails = (name) => {
@@ -29,7 +29,7 @@ export const postUserDetails = (name) => {
 
     const resData = await response.json();
     console.log(resData);
-    dispatch({type: GET_USER});
+    dispatch({type: USER_DETAILS, name});
   };
 };
 
@@ -54,7 +54,11 @@ export const getUserDetails = () => {
     }
 
     const resData = await response.json();
-    console.log(resData);
-    dispatch({type: GET_USER});
+    //logic to retreive name of user from an object of object
+    let name;
+    for (let key in resData) {
+      name = resData[key].name;
+    }
+    dispatch({type: USER_DETAILS, name});
   };
 };

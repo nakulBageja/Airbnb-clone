@@ -8,6 +8,7 @@ import {
   Platform,
   ActivityIndicator,
   Alert,
+  Keyboard,
 } from 'react-native';
 import {Text, Input, Button} from 'react-native-elements';
 import {useNavigation} from '@react-navigation/native';
@@ -38,9 +39,14 @@ const RegisterScreen = () => {
   const register = async () => {
     setError(null);
     setIsLoading(true);
+    Keyboard.dismiss();
     try {
       await dispatch(authActions.signUp(email, password));
-      await dispatch(userActions.postUserDetails(name));
+      await dispatch(userActions.postUserDetails(name)); //add user details in database
+      setEmail('');
+      setPassword('');
+      setName('');
+      navigation.navigate('Explore'); //go to home page
     } catch (error) {
       setError(error.message);
     }

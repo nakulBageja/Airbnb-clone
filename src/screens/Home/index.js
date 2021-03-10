@@ -1,17 +1,12 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import {View, Text, ImageBackground, Pressable} from 'react-native';
 import styles from './styles';
 import Fontisto from 'react-native-vector-icons/Fontisto';
 import {useNavigation} from '@react-navigation/native';
-import {useDispatch} from 'react-redux';
-import * as userActions from '../../../store/actions/user';
+import {useSelector} from 'react-redux';
 const HomeScreen = (props) => {
-  useEffect(() => {
-    effect;
-    return () => {
-      cleanup;
-    };
-  }, []);
+  const userName = useSelector((state) => state.auth.name);
+
   const navigation = useNavigation();
   return (
     <View>
@@ -32,6 +27,9 @@ const HomeScreen = (props) => {
           <Text style={styles.buttonText}>Explore nearby stays</Text>
         </Pressable>
       </ImageBackground>
+      <View>
+        <Text>Welcome {userName ? userName : 'Guest'}</Text>
+      </View>
     </View>
   );
 };
