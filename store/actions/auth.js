@@ -1,4 +1,5 @@
 export const AUTH = 'AUTH';
+
 export const signUp = (email, password) => {
   return async (dispatch) => {
     const response = await fetch(

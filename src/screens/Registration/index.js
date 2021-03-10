@@ -14,7 +14,7 @@ import {useNavigation} from '@react-navigation/native';
 import styles from './styles';
 import {useDispatch} from 'react-redux';
 import * as authActions from '../../../store/actions/auth';
-
+import * as userActions from '../../../store/actions/user';
 //import {auth} from '../firebase';
 const RegisterScreen = () => {
   const navigation = useNavigation();
@@ -36,9 +36,11 @@ const RegisterScreen = () => {
   //Register user to firebase
   //Adding user's name and profile photo
   const register = async () => {
+    setError(null);
     setIsLoading(true);
     try {
       await dispatch(authActions.signUp(email, password));
+      await dispatch(userActions.postUserDetails(name));
     } catch (error) {
       setError(error.message);
     }

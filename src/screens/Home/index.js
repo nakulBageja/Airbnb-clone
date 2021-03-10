@@ -1,10 +1,17 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {View, Text, ImageBackground, Pressable} from 'react-native';
 import styles from './styles';
 import Fontisto from 'react-native-vector-icons/Fontisto';
 import {useNavigation} from '@react-navigation/native';
-
+import {useDispatch} from 'react-redux';
+import * as userActions from '../../../store/actions/user';
 const HomeScreen = (props) => {
+  useEffect(() => {
+    effect;
+    return () => {
+      cleanup;
+    };
+  }, []);
   const navigation = useNavigation();
   return (
     <View>
