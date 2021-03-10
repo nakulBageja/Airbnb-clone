@@ -1,45 +1,48 @@
 //This screen shows the registration form
 
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import {
   View,
   KeyboardAvoidingView,
   TouchableOpacity,
   Platform,
+  ActivityIndicator,
+  Alert,
 } from 'react-native';
 import {Text, Input, Button} from 'react-native-elements';
 import {useNavigation} from '@react-navigation/native';
 import styles from './styles';
+import {useDispatch} from 'react-redux';
+import * as authActions from '../../../store/actions/auth';
 
 //import {auth} from '../firebase';
 const RegisterScreen = () => {
   const navigation = useNavigation();
-
+  const dispatch = useDispatch();
+  const [error, setError] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [imageUrl, setImageUrl] = useState('');
 
+  //Check if error occurred
+  useEffect(() => {
+    if (error) {
+      Alert.alert('Oops, something went wrong!', error, [{text: 'Okay'}]);
+    }
+  }, [error]);
+
   //Register user to firebase
   //Adding user's name and profile photo
-  const register = () => {
-    // auth
-    //   .createUserWithEmailAndPassword(email, password)
-    //   .then((authUser) => {
-    //     authUser.user.updateProfile({
-    //       displayName: name,
-    //       photoURL:
-    //         imageUrl ||
-    //         'https://cdn3.iconfinder.com/data/icons/toolbar-people/512/user_comment_man_male_talk_profile-512.png',
-    //     });
-    //     //When user is logged in, we don't want him to go back to login/registration page.
-    //     //So we pop all the pages from the stack and only home page is pushed
-    //     navigation.reset({
-    //       index: 0,
-    //       routes: [{name: 'HOME'}],
-    //     });
-    //   })
-    //   .catch((error) => alert(error.message));
+  const register = async () => {
+    setIsLoading(true);
+    try {
+      await dispatch(authActions.signUp(email, password));
+    } catch (error) {
+      setError(error.message);
+    }
+    setIsLoading(false);
   };
   return (
     <KeyboardAvoidingView
@@ -74,13 +77,17 @@ const RegisterScreen = () => {
           onSubmitEditing={register}
         />
       </View>
-      <Button
-        title="Register"
-        onPress={register}
-        containerStyle={styles.button}
-        raised
-        TouchableComponent={TouchableOpacity}
-      />
+      {isLoading ? (
+        <ActivityIndicator size="large" color="black" />
+      ) : (
+        <Button
+          title="Register"
+          onPress={register}
+          containerStyle={styles.button}
+          raised
+          TouchableComponent={TouchableOpacity}
+        />
+      )}
       <View style={{height: 80}}></View>
     </KeyboardAvoidingView>
   );

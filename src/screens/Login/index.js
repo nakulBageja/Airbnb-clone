@@ -7,47 +7,45 @@ import {
   KeyboardAvoidingView,
   Platform,
   TouchableOpacity,
+  ActivityIndicator,
   Alert,
 } from 'react-native';
-import {Input, Button} from 'react-native-elements';
+import {Input, Button, Text} from 'react-native-elements';
 import {useNavigation} from '@react-navigation/native';
 import styles from './styles';
+import {useDispatch} from 'react-redux';
+import * as authActions from '../../../store/actions/auth';
 //import {auth} from '../firebase';
 
 const LoginScreen = (props) => {
   const navigation = useNavigation();
+  const [isLoading, setIsLoading] = useState(false);
+  const dispatch = useDispatch();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-
-  //If user has logged in move to home screen
-  //   useEffect(() => {
-  //     console.log('LOGIN SCREEN');
-  //     const unsubscribe = auth.onAuthStateChanged((authUser) => {
-  //       if (authUser) {
-  //         navigation.replace('HOME');
-  //       }
-  //     });
-
-  //     return unsubscribe; //We want to login once and keep the user logged in if he refreshes the page
-  //   }, []);
+  const [error, setError] = useState(null);
+  //Check if error occurred
+  useEffect(() => {
+    if (error) {
+      Alert.alert('Oops, something went wrong!', error, [{text: 'Okay'}]);
+    }
+  }, [error]);
 
   //Handle sign in functionality
-  const signInHandler = () => {
-    auth
-      .signInWithEmailAndPassword(email, password)
-      .catch((error) =>
-        Alert.alert('Login Error', error.message, [{text: 'Okay'}]),
-      );
+  const signInHandler = async () => {
+    setIsLoading(true);
+    try {
+      await dispatch(authActions.login(email, password));
+    } catch (error) {
+      setError(error.message);
+    }
+    setIsLoading(false);
   };
   return (
     <KeyboardAvoidingView
       behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
-      style={styles.container}
-      keyboardVerticalOffset={100}>
-      <Image
-        source={require('../../../assets/images/logo.png')}
-        style={styles.Image}
-      />
+      style={styles.container}>
+      <Text h3>Log In</Text>
       <View style={styles.inputContainer}>
         <Input
           placeholder="Email"
@@ -64,12 +62,16 @@ const LoginScreen = (props) => {
           onSubmitEditing={signInHandler}
         />
       </View>
-      <Button
-        title="Login"
-        onPress={signInHandler}
-        containerStyle={styles.buttons}
-        TouchableComponent={TouchableOpacity}
-      />
+      {isLoading ? (
+        <ActivityIndicator size="large" color="black" />
+      ) : (
+        <Button
+          title="Login"
+          onPress={signInHandler}
+          containerStyle={styles.buttons}
+          TouchableComponent={TouchableOpacity}
+        />
+      )}
       <Button
         type="outline"
         title="Register"
