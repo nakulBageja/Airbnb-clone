@@ -35,7 +35,6 @@ const RegisterScreen = () => {
   }, [error]);
 
   //Register user to firebase
-  //Adding user's name and profile photo
   const register = async () => {
     setError(null);
     setIsLoading(true);
@@ -46,7 +45,7 @@ const RegisterScreen = () => {
       setEmail('');
       setPassword('');
       setName('');
-      navigation.navigate('Explore'); //go to home page
+      navigation.replace('Home'); //go to home page
     } catch (error) {
       setError(error.message);
     }

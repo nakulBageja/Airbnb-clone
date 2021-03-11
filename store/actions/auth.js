@@ -1,10 +1,14 @@
 export const AUTH = 'AUTH';
+export const LOGOUT = 'LOGOUT';
+
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export const authenticate = (token, userID) => {
   return {type: AUTH, token, userID};
 };
-
+export const logout = () => {
+  return {type: LOGOUT};
+};
 export const signUp = (email, password) => {
   return async (dispatch) => {
     const response = await fetch(

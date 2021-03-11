@@ -1,5 +1,5 @@
 //Get action type
-import {AUTH} from '../actions/auth';
+import {AUTH, LOGOUT} from '../actions/auth';
 import {USER_DETAILS} from '../actions/user';
 const initialState = {
   token: null,
@@ -18,6 +18,11 @@ export default (state = initialState, action) => {
       return {
         ...state,
         name: action.name,
+      };
+    case LOGOUT:
+      console.log('adasd');
+      return {
+        initialState,
       };
     default:
       return state;

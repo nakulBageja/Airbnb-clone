@@ -6,18 +6,33 @@ import {
   ImageBackground,
   Linking,
   Platform,
+  Pressable,
   ScrollView,
   StyleSheet,
   Text,
   View,
 } from 'react-native';
 import PropTypes from 'prop-types';
-
+import * as authActions from '../../../store/actions/auth';
 import Email from './Email';
 import Separator from './Separator';
 import Tel from './Tel';
-
+import {connect} from 'react-redux';
 const styles = StyleSheet.create({
+  button: {
+    marginBottom: 20,
+    backgroundColor: '#f15454',
+    alignItems: 'center',
+    justifyContent: 'center',
+    height: 50,
+    marginHorizontal: 20,
+    borderRadius: 10,
+  },
+  searchText: {
+    fontSize: 20,
+    color: 'white',
+    fontWeight: 'bold',
+  },
   cardContainer: {
     backgroundColor: '#FFF',
     borderWidth: 0,
@@ -138,6 +153,10 @@ class Contact extends Component {
     ).catch((err) => console.log('Error:', err));
   };
 
+  // renderLogoutButton = () => {
+  //   return <Pressable onPress={() => console.log('logout')}>LOGOUT</Pressable>;
+  // };
+
   renderHeader = () => {
     const {
       avatar,
@@ -226,11 +245,34 @@ class Contact extends Component {
             {this.renderTel()}
             {Separator()}
             {this.renderEmail()}
+            <Pressable
+              onPress={() => {
+                this.props.logoutHelper();
+                this.props.navigation.navigate('Home', {screen: 'Explore'});
+              }}
+              style={styles.button}>
+              <Text style={styles.searchText}>LOGOUT</Text>
+            </Pressable>
           </Card>
         </View>
       </ScrollView>
     );
   }
 }
+//Connecting our global state counter property to components props
+const mapStateToProps = (state) => {
+  return {
+    token: state.auth.token,
+    userID: state.auth.userID,
+    name: state.auth.name,
+  };
+};
+//Connecting our global dispatcher to components props
+const mapDispatchToProps = (dispatch) => {
+  return {
+    logoutHelper: () => dispatch({type: 'LOGOUT'}),
+  };
+};
 
-export default Contact;
+export default connect(mapStateToProps, mapDispatchToProps)(Contact);
+//export default Contact;

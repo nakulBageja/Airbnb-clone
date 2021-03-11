@@ -39,10 +39,10 @@ const LoginScreen = (props) => {
     Keyboard.dismiss();
     try {
       await dispatch(authActions.login(email, password));
-      await dispatch(userActions.getUserDetails()); //fetch user details from Db
       setEmail('');
       setPassword('');
-      navigation.navigate('Explore'); //go to home page
+      await dispatch(userActions.getUserDetails()); //fetch user details from Db
+      navigation.replace('Home'); //go to home page
     } catch (error) {
       setError(error.message);
       setIsLoading(false);
