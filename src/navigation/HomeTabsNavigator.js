@@ -8,8 +8,11 @@ import Feather from 'react-native-vector-icons/Feather';
 import EvilIcons from 'react-native-vector-icons/EvilIcons';
 import ExploreNavigation from './ExploreNavigation';
 import LoginScreen from '../screens/Login';
+import {useSelector} from 'react-redux';
+import UserDetailsScreen from '../screens/UserDetails';
 const Tab = createBottomTabNavigator();
 const HomeTabsNavigator = () => {
+  const userName = useSelector((state) => state.auth.name);
   return (
     <Tab.Navigator tabBarOptions={{activeTintColor: '#f15454'}}>
       <Tab.Screen
@@ -50,7 +53,7 @@ const HomeTabsNavigator = () => {
       />
       <Tab.Screen
         name="Profile"
-        component={LoginScreen}
+        component={userName ? UserDetailsScreen : LoginScreen}
         options={{
           tabBarIcon: ({color}) => (
             <EvilIcons name="user" size={25} color={color} />
