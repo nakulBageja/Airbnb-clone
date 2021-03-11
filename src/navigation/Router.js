@@ -9,12 +9,18 @@ import SearchResultsScreen from '../screens/SearchResults';
 import LoginScreen from '../screens/Login';
 import RegisterScreen from '../screens/Registration';
 import PostDetailsScreen from '../screens/PostDetails';
+import StartUp from '../screens/StartUp';
 
 const Stack = createStackNavigator();
 const Router = () => {
   return (
     <NavigationContainer>
       <Stack.Navigator>
+        <Stack.Screen
+          name="Start Up"
+          component={StartUp}
+          options={{headerShown: false}}
+        />
         <Stack.Screen
           name="Home"
           component={HomeTabsNavigator}
