@@ -6,11 +6,15 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import * as AuthAction from '../../../store/actions/auth';
 import * as userActions from '../../../store/actions/user';
 import styles from './styles';
+import * as KeyChain from 'react-native-keychain';
 const StartUp = () => {
   const dispatch = useDispatch();
   const navigation = useNavigation();
   useEffect(() => {
     const tryLogin = async () => {
+      //set keychain api keys
+      await KeyChain.setGenericPassword('key', '');
+
       //Get user details
       const userData = await AsyncStorage.getItem('userData');
 

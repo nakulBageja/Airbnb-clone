@@ -13,7 +13,7 @@ const styles = StyleSheet.create({
   searchText: {
     fontSize: 20,
     color: 'white',
-    fontWeight: 'bold',
+    fontWeight: '900',
   },
 });
 export default styles;

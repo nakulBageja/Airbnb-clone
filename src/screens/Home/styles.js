@@ -25,7 +25,7 @@ const styles = StyleSheet.create({
   },
   buttonText: {
     fontSize: 16,
-    fontWeight: 'bold',
+    fontWeight: '900',
   },
   searchButton: {
     backgroundColor: '#fff',
@@ -42,7 +42,7 @@ const styles = StyleSheet.create({
   },
   searchButtonText: {
     fontSize: 16,
-    fontWeight: 'bold',
+    fontWeight: '900',
     marginLeft: 10,
   },
 });

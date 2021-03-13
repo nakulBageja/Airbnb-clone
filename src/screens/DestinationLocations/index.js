@@ -1,26 +1,35 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {View, Text, TextInput, FlatList, Pressable} from 'react-native';
 import styles from './styles';
 import Entypo from 'react-native-vector-icons/Entypo';
 import {useNavigation} from '@react-navigation/native';
 import {GooglePlacesAutocomplete} from 'react-native-google-places-autocomplete';
+import * as KeyChain from 'react-native-keychain';
 const DestinationLocationsScreen = () => {
   const [destinationInput, setDestinationInput] = useState('');
   const navigation = useNavigation();
+  const [keys, setKey] = useState('');
+  useEffect(() => {
+    const getKey = async () => {
+      const keyCredential = await KeyChain.getGenericPassword();
+
+      if (keyCredential) {
+        console.log(keyCredential);
+        setKey(keyCredential.password);
+      }
+    };
+    getKey();
+  }, [keys]);
+
   const renderList = (item) => {
     return (
       //     {/* List of locations */}
-      // <Pressable
-      //   onPress={() => {
-      //     navigation.navigate('Guests');
-      //   }}>
       <View style={styles.listContainer}>
         <View style={styles.iconContainer}>
           <Entypo name="location-pin" size={25} />
         </View>
         <Text style={styles.locationText}>{item.description}</Text>
       </View>
-      //    </Pressable>
     );
   };
   return (
@@ -37,7 +46,7 @@ const DestinationLocationsScreen = () => {
           textInput: styles.textInput,
         }}
         query={{
-          key: 'AIzaSyBMaVGNL6AUp7jdGWIVMUofAhP-nakFJ38',
+          key: '',
           language: 'en',
           type: '(cities)',
         }}

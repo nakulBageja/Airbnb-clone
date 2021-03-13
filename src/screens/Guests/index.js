@@ -43,7 +43,7 @@ const GuestsScreen = () => {
           });
         }}
         style={styles.button}>
-        <Text style={styles.searchText}>Search</Text>
+        <Text style={styles.searchText}>Search </Text>
       </Pressable>
     </View>
   );
