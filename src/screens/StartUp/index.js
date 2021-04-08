@@ -13,7 +13,7 @@ const StartUp = () => {
   useEffect(() => {
     const tryLogin = async () => {
       //set keychain api keys
-      await KeyChain.setGenericPassword('key', '');
+      await KeyChain.setGenericPassword('key', 'll');
 
       //Get user details
       const userData = await AsyncStorage.getItem('userData');

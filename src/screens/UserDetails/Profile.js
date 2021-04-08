@@ -31,7 +31,7 @@ const styles = StyleSheet.create({
   searchText: {
     fontSize: 20,
     color: 'white',
-    fontWeight: 'bold',
+    fontWeight: '900',
   },
   cardContainer: {
     backgroundColor: '#FFF',
@@ -102,7 +102,7 @@ const styles = StyleSheet.create({
   userNameText: {
     color: '#FFF',
     fontSize: 22,
-    fontWeight: 'bold',
+    fontWeight: '900',
     paddingBottom: 8,
     textAlign: 'center',
   },
@@ -173,7 +173,7 @@ class Contact extends Component {
           source={{uri: avatarBackground}}>
           <View style={styles.headerColumn}>
             <Image style={styles.userImage} source={{uri: avatar}} />
-            <Text style={styles.userNameText}>{name}</Text>
+            <Text style={styles.userNameText}>{name} </Text>
             <View style={styles.userAddressRow}>
               <View>
                 <Icon
@@ -185,7 +185,7 @@ class Contact extends Component {
               </View>
               <View style={styles.userCityRow}>
                 <Text style={styles.userCityText}>
-                  {city}, {country}
+                  {city} , {country}{' '}
                 </Text>
               </View>
             </View>
@@ -251,7 +251,7 @@ class Contact extends Component {
                 this.props.navigation.navigate('Home', {screen: 'Explore'});
               }}
               style={styles.button}>
-              <Text style={styles.searchText}>LOGOUT</Text>
+              <Text style={styles.searchText}>LOGOUT </Text>
             </Pressable>
           </Card>
         </View>

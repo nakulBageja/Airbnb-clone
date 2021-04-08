@@ -46,7 +46,7 @@ const DestinationLocationsScreen = () => {
           textInput: styles.textInput,
         }}
         query={{
-          key: '',
+          key: 'AIzaSyB7TcZknRo3pJ3HB66nw_bWLtJvR0CeDy4',
           language: 'en',
           type: '(cities)',
         }}
